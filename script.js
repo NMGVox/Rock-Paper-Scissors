@@ -105,18 +105,23 @@ function playRound(p){
     return;
 }
 
+
 function game() {
     // let win_loss = 0;
     //Play the round
     let pchoice = this.value;
     let res = playRound(pchoice);
+
     if(player === 5 || cpu === 5){
         let winner_text = document.createElement("h3");
         winner_text.classList.add('announce-winner');
         res_div = document.querySelector(".results");
         winner_text.textContent = player === 5 ? "You won the game!" : "You have lost the game! Try again!";
         res_div.appendChild(winner_text);
+
+        btns.forEach(btn => btn.disabled = true);
     }
+
     return;
 }
 

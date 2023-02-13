@@ -12,3 +12,11 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color:aliceblue;
 }
+
+.retry {
+    display:none;
+}
+
+.retry.gameover{
+    display:inline;
+}

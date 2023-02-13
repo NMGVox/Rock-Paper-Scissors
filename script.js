@@ -16,6 +16,17 @@ rpsround will check if the player beats the CPU by running comparisons.
 let player = 0;
 let cpu = 0;
 
+let clearText = () => {
+    let res_div = document.querySelector(".results");
+    let res_text = document.querySelector(".res_text");
+    let score = document.querySelector(".score-board");
+    let winner_text = document.querySelector(".announce-winner");
+    res_div.removeChild(res_text);
+    res_div.removeChild(winner_text);
+    score.textContent = "0 - 0";
+    return;
+}
+
 let checkWinner = (p, c) => {   
     //Check if user choice matches cpu choice return 0 if so.
     if(c === p){
@@ -105,6 +116,14 @@ function playRound(p){
     return;
 }
 
+function resetgame(e) {
+    player = 0;
+    cpu = 0;
+
+    btns.forEach(btn => btn.disabled = false);
+    clearText();
+    this.classList.remove("gameover");
+}
 
 function game() {
     // let win_loss = 0;
@@ -120,11 +139,16 @@ function game() {
         res_div.appendChild(winner_text);
 
         btns.forEach(btn => btn.disabled = true);
+        
+        retry_btn.classList.add("gameover");
     }
-
     return;
 }
 
 let btns = document.querySelectorAll(".gamebtn");
+let retry_btn = document.querySelector(".retry");
+
+retry_btn.addEventListener('click', resetgame);
 
 btns.forEach(btn => btn.addEventListener('click', game));
+

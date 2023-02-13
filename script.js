@@ -13,6 +13,44 @@ rpsround will check if the player beats the CPU by running comparisons.
 //     return(Math.floor(Math.random() * 3));
 // }
 
+let player = 0;
+let cpu = 0;
+
+let checkWinner = (p, c) => {   
+    //Check if user choice matches cpu choice return 0 if so.
+    if(c === p){
+        return  0;
+    }
+
+    //Check winner
+    switch (p){
+        case 'Rock':
+            if(c === 'Paper'){
+                return -1;
+            }
+            else{
+                return 1;
+            }
+            break;
+        case 'Paper':
+            if(c === 'Scissors'){
+                return -1;
+            }
+            else{
+                return 1;
+            }
+            break;
+        case 'Scissors':
+            if(c === 'Rock'){
+                return -1;
+            }
+            else{
+                return 1;
+            }
+            break;
+    }
+}
+
 let getComputerChoice = () => {
     let c = (Math.floor(Math.random() * 3));
     switch (c){
@@ -33,6 +71,7 @@ function playRound(p){
 
     let res_div = document.querySelector(".results");
     let res_text = document.querySelector(".res_text");
+    let score = document.querySelector(".score-board");
     
     if(!res_text){
         res_text = document.createElement("h2");
@@ -42,59 +81,25 @@ function playRound(p){
     let winner = "";
     let loser = "";
     
-    //Check if user choice matches cpu choice return 0 if so.
-    if(c_choice === p){
-        console.log("You tied! Repeat the round!")
-        res_text.textContent = "You tied! Repeat the round!";
+    let eval_result = checkWinner(p, c_choice);
+
+    if(eval_result === 1){
+        winner = p;
+        loser = c_choice;
+        ++player;
+    }
+    else if(eval_result === -1){
+        loser = p;
+        winner = c_choice;
+        ++cpu;
+    }
+    else{
+        res_text.textContent = "You tied!";
         res_div.appendChild(res_text);
-        return  0;
+        return;
     }
 
-    //Check winner
-    switch (p){
-        case 'Rock':
-            if(c_choice === 'Paper'){
-                console.log("Paper covers rock! You lose!");
-                winner = c_choice;
-                loser = p;
-                return -1;
-            }
-            else{
-                console.log("Rock beats scissors! You win!");
-                winner = p;
-                loser = c_choice;
-                return 1;
-            }
-            break;
-        case 'Paper':
-            if(c_choice === 'Scissors'){
-                console.log("Scissors covers paper! You lose!");
-                winner = c_choice;
-                loser = p;
-                return -1;
-            }
-            else{
-                console.log("Paper covers rock! You win!");
-                winner = p;
-                loser = c_choice;
-                return 1;
-            }
-            break;
-        case 'Scissors':
-            if(c_choice === 'Rock'){
-                console.log("Rock beats scissors! You lose!");
-                winner = c_choice;
-                loser = p;
-                return -1;
-            }
-            else{
-                console.log("Scissors cuts paper! You win!");
-                winner = p;
-                loser = c_choice;
-                return 1;
-            }
-            break;
-    }
+    score.textContent = `${player} - ${cpu}`;
     res_text.textContent = `${winner} beats ${loser}! ${(winner === p ? "You win!" : "You lose!")}`;
     res_div.appendChild(res_text);
     return;
@@ -105,6 +110,13 @@ function game() {
     //Play the round
     let pchoice = this.value;
     let res = playRound(pchoice);
+    if(player === 5 || cpu === 5){
+        let winner_text = document.createElement("h3");
+        winner_text.classList.add('announce-winner');
+        res_div = document.querySelector(".results");
+        winner_text.textContent = player === 5 ? "You won the game!" : "You have lost the game! Try again!";
+        res_div.appendChild(winner_text);
+    }
     return;
 }
 

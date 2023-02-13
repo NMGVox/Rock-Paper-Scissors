@@ -17,97 +17,95 @@ let getComputerChoice = () => {
     let c = (Math.floor(Math.random() * 3));
     switch (c){
         case 0: 
-            return('rock');
+            return('Rock');
             break;
         case 1:
-            return('paper');
+            return('Paper');
             break;
         case 2:
-            return('scissors');
+            return('Scissors');
             break;
     }
 }
 
 function playRound(p){
     let c_choice = getComputerChoice();
-    console.log(c_choice + " " + p);
+
+    let res_div = document.querySelector(".results");
+    let res_text = document.querySelector(".res_text");
+    
+    if(!res_text){
+        res_text = document.createElement("h2");
+        res_text.classList.add("res_text");
+    }
+
+    let winner = "";
+    let loser = "";
     
     //Check if user choice matches cpu choice return 0 if so.
     if(c_choice === p){
         console.log("You tied! Repeat the round!")
+        res_text.textContent = "You tied! Repeat the round!";
+        res_div.appendChild(res_text);
         return  0;
     }
 
     //Check winner
     switch (p){
-        case 'rock':
-            if(c_choice === 'paper'){
-                console.log("Paper covers rock! You lose!")
+        case 'Rock':
+            if(c_choice === 'Paper'){
+                console.log("Paper covers rock! You lose!");
+                winner = c_choice;
+                loser = p;
                 return -1;
             }
             else{
-                console.log("Rock beats scissors! You win!")
+                console.log("Rock beats scissors! You win!");
+                winner = p;
+                loser = c_choice;
                 return 1;
             }
             break;
-        case 'paper':
-            if(c_choice === 'scissors'){
-                console.log("Scissors covers paper! You lose!")
+        case 'Paper':
+            if(c_choice === 'Scissors'){
+                console.log("Scissors covers paper! You lose!");
+                winner = c_choice;
+                loser = p;
                 return -1;
             }
             else{
-                console.log("Paper covers rock! You win!")
+                console.log("Paper covers rock! You win!");
+                winner = p;
+                loser = c_choice;
                 return 1;
             }
             break;
-        case 'scissors':
-            if(c_choice === 'rock'){
-                console.log("Rock beats scissors! You lose!")
+        case 'Scissors':
+            if(c_choice === 'Rock'){
+                console.log("Rock beats scissors! You lose!");
+                winner = c_choice;
+                loser = p;
                 return -1;
             }
             else{
-                console.log("Scissors cuts paper! You win!")
+                console.log("Scissors cuts paper! You win!");
+                winner = p;
+                loser = c_choice;
                 return 1;
             }
             break;
     }
-
+    res_text.textContent = `${winner} beats ${loser}! ${(winner === p ? "You win!" : "You lose!")}`;
+    res_div.appendChild(res_text);
+    return;
 }
 
 function game() {
     // let win_loss = 0;
-    // for(let i = 1; i < 6; i++){
     //Play the round
     let pchoice = this.value;
     let res = playRound(pchoice);
-
-    switch(res){
-        case 0:
-            console.log("Tie.");
-            break;
-        case 1:
-            console.log("You win.");
-            break;
-        case -1:
-            console.log("You lost.");
-            break;
-        default:
-            console.log("I just don't know what went wrong.");
-    }
-
     return;
-
-    // if(res === 0){
-    //     i--;
-    //     continue;
-    // }
-    //win_loss += res;
-
-    //win_loss > 0 ? console.log("You win!") : console.log("You lost! Try again!");
-}
-
-function testfunc(e) {
-    console.log(this.value);
 }
 
 let btns = document.querySelectorAll(".gamebtn");

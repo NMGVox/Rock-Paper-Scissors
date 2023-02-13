@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="script.js"></script>
         <meta charset="UTF-8">
         <title>Rock-paper-Scissors!</title>
         <link rel="stylesheet" href="style.css">
@@ -9,10 +8,13 @@
 
     <body>
         <h1>Hello there. Press F12.</h1>
+        <div class="results"></div>
         <div class="button-container">
-            <button onclick="rpsRound(0)">Rock!</button>
-            <button onclick="rpsRound(1)">Paper!</button>
-            <button onclick="rpsRound(2)">Scissors!</button>
+            <button class= "gamebtn" value="rock">Rock!</button>
+            <button class= "gamebtn" value="paper">Paper!</button>
+            <button class= "gamebtn" value="scissors">Scissors!</button>
         </div>
+
+        <script src="script.js"></script>
     </body>
 </html>

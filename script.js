@@ -28,45 +28,6 @@ let getComputerChoice = () => {
     }
 }
 
-// let rpsRound = (p_choice) => {
-//     let c_choice = getComputerChoice();
-//     console.log(`You chose:  ${(p_choice === 0 ? "Rock!" : p_choice === 1 ? "Paper!" : "Scissors!")}`);
-//     console.log(`CPU chose:  ${(c_choice === 0 ? "Rock!" : c_choice === 1 ? "Paper!" : "Scissors!")}`);
-
-//     if(p_choice === c_choice){
-//         console.log("You tied!");
-//         return p_choice;
-//     }
-
-//     switch (p_choice){
-//         case 0:
-//             if(c_choice === 1){
-//                 console.log("Paper beats rock! You lose!");
-//             }
-//             else{
-//                 console.log("Rock beats scissors! You win!");
-//             }
-//             break;
-//         case 1:
-//             if(c_choice === 2){
-//                 console.log("Scissors beats paper! You lose!");
-//             }
-//             else{
-//                 console.log("Paper beats rock! You win!");
-//             }
-//             break;
-//         case 2:
-//             if(c_choice === 0){
-//                 console.log("Rock beats scissors! You lose!");
-//             }
-//             else{
-//                 console.log("Scissors beats paper! You win!");
-//             }  
-//             break;
-//     }
-//     return p_choice;   
-// }
-
 function playRound(p){
     let c_choice = getComputerChoice();
     console.log(c_choice + " " + p);
@@ -113,36 +74,42 @@ function playRound(p){
 
 }
 
-let game = () => {
-    let win_loss = 0;
-    for(let i = 1; i < 6; i++){
-        let pchoice = prompt(`Round: ${i}! Pick your weapon!`);
-        pchoice = pchoice.toLowerCase();
-        
-        //Validate the input. Repeat round if not valid.
-        if(pchoice != 'rock' && pchoice != 'paper' && pchoice != 'scissors'){
-            i--;
-            alert("Please enter rock, paper or scissors.");
-            continue;
-        }
-        //Play the round
-        let res = playRound(pchoice);
-        //if tied...
-        if(res === 0){
-            //Repeat the round
-            i--;
-            continue;
-        }
-        //Add result to win/loss record.
-        win_loss += res;
+function game() {
+    // let win_loss = 0;
+    // for(let i = 1; i < 6; i++){
+    //Play the round
+    let pchoice = this.value;
+    let res = playRound(pchoice);
+
+    switch(res){
+        case 0:
+            console.log("Tie.");
+            break;
+        case 1:
+            console.log("You win.");
+            break;
+        case -1:
+            console.log("You lost.");
+            break;
+        default:
+            console.log("I just don't know what went wrong.");
     }
-    //Determine the winnwe using the win/loss record.
-    if(win_loss > 0){
-        console.log("You win!")
-    }
-    else{
-        console.log("You lose!")
-    }
+
+    return;
+
+    // if(res === 0){
+    //     i--;
+    //     continue;
+    // }
+    //win_loss += res;
+
+    //win_loss > 0 ? console.log("You win!") : console.log("You lost! Try again!");
 }
 
-game()
+function testfunc(e) {
+    console.log(this.value);
+}
+
+let btns = document.querySelectorAll(".gamebtn");
+
+btns.forEach(btn => btn.addEventListener('click', game));

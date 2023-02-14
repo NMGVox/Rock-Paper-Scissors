@@ -9,8 +9,29 @@ body{
     padding:0px;
     box-sizing: border-box;
     background-color: darkgray;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color:aliceblue;
+}
+
+.Intro{
+    font-family: fantasy;
+    font-size: 48px;
+    background-image: linear-gradient(rgb(199, 223, 245), white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.results{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-board {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .retry {
@@ -19,4 +40,49 @@ body{
 
 .retry.gameover{
     display:inline;
+    padding: 12px 12px;
+    margin-top: 24px;
+    border-radius: 24px;
+    font-size: 18px;
+    font-weight: bolder;
+    color:aliceblue;
+    background-color: black;
+    border-style: double;
 }
+
+.gamebtn{
+    height:200px;
+    width:200px;
+    border-style: solid;
+    border-radius: 25px;
+    transition: 1s;
+    border-width: 5px;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    background-color: aliceblue;
+}
+
+ .gamebtn:hover{
+    border-color: gold;
+    transform: scale(1.25);
+    background-size: 250px 250px;
+    margin: 25px;
+}
+
+.gamebtn.rock{
+    background: url("./images/rock.webp");
+    background-size: 200px 200px;
+    background-color: rgb(0, 63, 145);
+}
+
+.gamebtn.paper{
+    background: url("./images/paper.webp");
+    background-size: 200px 200px;
+}
+
+.gamebtn.scissors{
+    background: url("./images/scissors.png");
+    background-size: 200px 200px;
+    background-color: rgb(0, 107, 45);
+}
+

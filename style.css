@@ -34,6 +34,10 @@ body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.retry-div{
+    text-align: center;
+}
+
 .retry {
     display:none;
 }
@@ -48,6 +52,13 @@ body{
     color:aliceblue;
     background-color: black;
     border-style: double;
+    transition: 2s;
+}
+
+.retry.gameover:hover{
+    transform:scale(1.2);
+    background-color: honeydew;
+    color:black;
 }
 
 .gamebtn{
@@ -63,26 +74,27 @@ body{
 }
 
  .gamebtn:hover{
-    border-color: gold;
+    border-color: white;
     transform: scale(1.25);
     background-size: 250px 250px;
     margin: 25px;
 }
 
 .gamebtn.rock{
-    background: url("./images/rock.webp");
+    background: url("./images/rock_icon.png");
     background-size: 200px 200px;
-    background-color: rgb(0, 63, 145);
+    background-color: rgb(2, 35, 180);
 }
 
 .gamebtn.paper{
-    background: url("./images/paper.webp");
+    background: url("./images/paper_icon.png");
     background-size: 200px 200px;
+    background-color: orange;
 }
 
 .gamebtn.scissors{
-    background: url("./images/scissors.png");
+    background: url("./images/scissors_icon.png");
     background-size: 200px 200px;
-    background-color: rgb(0, 107, 45);
+    background-color: rgb(0, 117, 20);
 }
 

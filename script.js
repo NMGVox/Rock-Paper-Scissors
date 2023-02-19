@@ -22,7 +22,6 @@ let clearText = () => {
     let score = document.querySelector(".score-board");
     let winner_text = document.querySelector(".announce-winner");
     res_div.removeChild(res_text);
-    res_div.removeChild(winner_text);
     score.textContent = "0 - 0";
     return;
 }
@@ -119,7 +118,8 @@ function playRound(p){
 function resetgame(e) {
     player = 0;
     cpu = 0;
-
+    retry_div = document.querySelector(".retry-div");
+    retry_div.removeChild(retry_div.firstChild)
     btns.forEach(btn => btn.disabled = false);
     clearText();
     this.classList.remove("gameover");
@@ -134,9 +134,9 @@ function game() {
     if(player === 5 || cpu === 5){
         let winner_text = document.createElement("h3");
         winner_text.classList.add('announce-winner');
-        res_div = document.querySelector(".results");
+        retry_div = document.querySelector(".retry-div");
         winner_text.textContent = player === 5 ? "You won the game!" : "You have lost the game! Try again!";
-        res_div.appendChild(winner_text);
+        retry_div.insertBefore(winner_text, retry_div.firstChild);
 
         btns.forEach(btn => btn.disabled = true);
         
